@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.List;
+
 @Entity
 public class Product {
     private  @Id() @GeneratedValue(strategy = GenerationType.IDENTITY) Long productId;
@@ -14,17 +16,25 @@ public class Product {
     private double avgRating;
     private int ratingCount;
     private String description;
+    private Brand brand;
+    private List<ProductImage> images;
+    private List<Tag> tags;
 
     public Product() {
     }
 
-    public Product(Category category, ProductSku sku, String name, double avgRating, int ratingCount, String description) {
+    public Product(Category category, ProductSku sku, String name, double avgRating, int ratingCount,
+                   String description, Brand brand, List<ProductImage> images, List<Tag> tags
+    ) {
         this.category = category;
         this.sku = sku;
         this.name = name;
         this.avgRating = avgRating;
         this.ratingCount = ratingCount;
         this.description = description;
+        this.brand = brand;
+        this.images = images;
+        this.tags=tags;
     }
 
     public Long getProductId() {
@@ -81,5 +91,29 @@ public class Product {
 
     public void setSku(ProductSku sku) {
         this.sku = sku;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public List<ProductImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ProductImage> images) {
+        this.images = images;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 }
